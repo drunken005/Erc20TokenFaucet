@@ -2,7 +2,7 @@
 
 Testnet Erc20 tokens faucet
 
-## Demo
+## [Demo](http://faucet.coinxp.io)
 
 ![demo](https://github.com/drunken005/Erc20TokenFaucet/blob/master/app/public/demo/demo.png)
 
