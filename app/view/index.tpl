@@ -39,6 +39,7 @@
                         </button>
                     </div>
                 </div>
+                <div>You can request <a href="https://faucet.ropsten.be/" target="_blank">ETH</a></div>
 
             </div>
 
