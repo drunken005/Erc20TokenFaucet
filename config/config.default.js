@@ -1,8 +1,6 @@
 'use strict';
 const path = require('path');
 
-
-const {ETH_POINT, PRIVATE_KEY, HOST_POINT} = process.env;
 module.exports = appInfo => {
     const config = exports = {};
     config.middleware = ['errorHandler'];
@@ -30,19 +28,10 @@ module.exports = appInfo => {
 
     config.keys = appInfo.name + '_1538988032206_7794';
 
-    config.host = HOST_POINT;
-
     config.ether = {
         signer: '0x5D6b33755202d5F3FdA82DABb826fBC596a45CD9',
-        amount: 100000,
-        ethPoint: ETH_POINT,
-        privateKey: PRIVATE_KEY
+        amount: 100000
     };
 
     return config;
 };
-/**
- set ETH_POINT=http://192.168.0.171:8545
- set PRIVATE_KEY=133AF55264AD0C3444E89094C130AE935C22988766D36A4697B4693B04D6A908
- set HOST_POINT=http://127.0.0.1:7001
- */

@@ -1,11 +1,12 @@
 'use strict';
 
 const tokens = require('../lib/tokens');
+const configs = require('../lib/config');
 module.exports = app => {
     class HomeController extends app.Controller {
         async index() {
             let {ctx, config} = this;
-            const data = {tokens, amount: config.amount, hostUrl: config.host};
+            const data = {tokens, amount: config.amount, hostUrl: configs.hostPoint};
             await ctx.render('index.tpl', data);
         }
 

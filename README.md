@@ -10,15 +10,14 @@ Testnet Erc20 tokens faucet
 
 ```bash
 $ npm i
-$ npm run dev
-$ open http://localhost:7001/
+$ node index.js --help
+$ open http://localhost:3000/
 ```
 
 ### Deploy
 
 ```bash
-$ docker build -t erc20TokenFaucet .
-$ docker run -it -d -e PRIVATE_KEY="eth account private key" --name faucet erc20TokenFaucet /bin/bash
+$ node index.js --help
 ```
 
 ### npm scripts

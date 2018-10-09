@@ -4,12 +4,14 @@
   "description": "Testnet Erc20 tokens faucet",
   "private": true,
   "dependencies": {
+    "commander": "^2.19.0",
     "egg": "^2.2.1",
     "egg-cors": "^2.1.1",
     "egg-scripts": "^2.5.0",
     "egg-validate": "^2.0.1",
     "egg-view-nunjucks": "^2.2.0",
     "ethereumjs-tx": "^1.3.7",
+    "lodash": "^4.17.11",
     "web3": "^0.20.1"
   },
   "devDependencies": {
@@ -26,8 +28,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-Erc20TokenFaucet",
-    "stop": "egg-scripts stop --title=egg-server-Erc20TokenFaucet",
+    "start": "node index.js",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

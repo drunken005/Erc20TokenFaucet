@@ -1,15 +1,17 @@
 const getWeb3Connection = require('./app/lib/web3/web3_connection');
 const Erc20Token = require('./app/lib/erc20_token');
+const config = require('./app/lib/config');
+
 module.exports = app => {
     app.beforeStart(async () => {
         let {ether} = app.config;
         let web3;
         try {
-            web3 = getWeb3Connection(ether.ethPoint);
+            web3 = getWeb3Connection(config.ethPoint);
         } catch (e) {
             throw new Error(e);
         }
-        app.erc20Token = new Erc20Token(web3, ether.privateKey, ether.signer);
+        app.erc20Token = new Erc20Token(web3, config.privateKey, ether.signer);
     });
 
 
