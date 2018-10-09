@@ -2,11 +2,9 @@
 
 Testnet Erc20 tokens faucet
 
-## QuickStart
+## Demo
 
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
+![demo](https://github.com/drunken005/Erc20TokenFaucet/blob/master/app/public/demo/demo.png)
 
 ### Development
 
@@ -19,8 +17,8 @@ $ open http://localhost:7001/
 ### Deploy
 
 ```bash
-$ npm start
-$ npm stop
+$ docker build -t erc20TokenFaucet .
+$ docker run -it -d -e PRIVATE_KEY="eth account private key" --name faucet erc20TokenFaucet /bin/bash
 ```
 
 ### npm scripts
