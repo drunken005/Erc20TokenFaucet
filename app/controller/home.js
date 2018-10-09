@@ -6,7 +6,7 @@ module.exports = app => {
     class HomeController extends app.Controller {
         async index() {
             let {ctx, config} = this;
-            const data = {tokens, amount: config.amount, hostUrl: configs.hostPoint};
+            const data = {tokens, amount: config.ether.amount, hostUrl: configs.hostPoint};
             await ctx.render('index.tpl', data);
         }
 
