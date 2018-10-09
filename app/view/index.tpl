@@ -39,6 +39,7 @@
                         </button>
                     </div>
                 </div>
+                <div>Token recycle address: <a>0x5d6b33755202d5f3fda82dabb826fbc596a45cd9</a></div><p/>
                 <div>You can request <a href="https://faucet.ropsten.be/" target="_blank">ETH</a></div>
 
             </div>
