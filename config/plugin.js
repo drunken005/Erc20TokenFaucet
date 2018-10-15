@@ -13,7 +13,7 @@ exports.validate = {
 };
 
 exports.security = {
-    enable: false,
+    enable: true,
 };
 
 exports.cors = {
