@@ -2,6 +2,8 @@
 
 const ERC20Interface = require('./contract/ERC20Interface.sol.js');
 const EthereumTx = require('ethereumjs-tx');
+const EtherSigner = require('ethereum-offline-sign');
+const gasLimit = 4000000;
 
 class Erc20Token {
     constructor(web3, privateKey, signer) {
@@ -12,10 +14,10 @@ class Erc20Token {
         this.nonce = web3.eth.getTransactionCount(signer);
     }
 
-    transfer(erc20Contract, toAddress, amount) {
+    transfer(contractAddress, toAddress, amount) {
         let {web3, signer, privateKey, nonce} = this;
 
-        if (!web3.isAddress(erc20Contract)) {
+        if (!web3.isAddress(contractAddress)) {
             throw new Error('erc20 contract error!')
         }
 
@@ -23,23 +25,25 @@ class Erc20Token {
             throw new Error('you input address error!')
         }
 
-        let token = this.tokenContract.at(erc20Contract);
-        let data = token.transfer.getData(toAddress, web3.toWei(amount), {from: signer});
         let gasPrice = web3.eth.gasPrice;
-        const txObj = {
-            to: token.address,
-            value: 0,
-            data: data,
-            nonce: nonce,
-            gasPrice: web3.toHex(gasPrice),
-            gasLimit: web3.toHex(4000000)
-        };
-        const tx = new EthereumTx(txObj);
-        tx.sign(privateKey);
-        let signedTx = '0x' + tx.serialize().toString('hex');
+        let etherSigner = new EtherSigner(this.tokenContract.at(contractAddress), privateKey, gasPrice, gasLimit);
+
+        let params = [toAddress, etherSigner.toWei(amount), {from: signer}];
+
+        function sendTransaction() {
+            let signedTx = etherSigner.contractTransferSign('transfer', params, contractAddress, nonce, 0);
+            try {
+                return web3.eth.sendRawTransaction(signedTx);
+            } catch (e) {
+                throw new Error(e);
+            }
+
+        }
+
         try {
-            const txHash = web3.eth.sendRawTransaction(signedTx);
-            this.nonce++;
+            let txHash = sendTransaction();
+            this.nonce += 1;
+            console.log({nonce: nonce, txHash, newNonce: this.nonce});
             return txHash;
         } catch (e) {
             this.nonce = web3.eth.getTransactionCount(signer);

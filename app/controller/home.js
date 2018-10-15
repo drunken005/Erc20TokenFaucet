@@ -18,7 +18,6 @@ module.exports = app => {
                 address: 'string'
             }, data);
             let hash = ctx.app.erc20Token.transfer(data.token, data.address, config.ether.amount);
-            console.log('hash: ', hash);
             this.success(hash);
         }
     }
